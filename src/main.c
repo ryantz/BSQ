@@ -6,12 +6,16 @@
 /*   By: ryatan <ryatan@student.42singapore.sg>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:45:40 by ryatan            #+#    #+#             */
-/*   Updated: 2025/10/27 11:46:04 by ryatan           ###   ########.fr       */
+/*   Updated: 2025/10/27 12:07:42 by ryatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "lib.h"
+
 int	main()
 {
-	char *s = "ok";
+	char s = 'k';
+
+	ft_putchar(s);
 	return (0);
 }
