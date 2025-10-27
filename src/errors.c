@@ -1,23 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lib.h                                              :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryatan <ryatan@student.42singapore.sg>     +#+  +:+       +#+        */
+/*   By: ryatan <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 12:46:55 by ryatan            #+#    #+#             */
-/*   Updated: 2025/10/27 14:10:22 by ryatan           ###   ########.fr       */
+/*   Created: 2025/10/27 14:07:43 by ryatan            #+#    #+#             */
+/*   Updated: 2025/10/27 14:07:54 by ryatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIB_H
-# define LIB_H
-
-# include <unistd.h>
-# include <fcntl.h>
-
-void	ft_putchar(char c);
-void	ft_putstr(char *s);
-int	ft_len(char *s);
-
-#endif
+#include "lib.h"
