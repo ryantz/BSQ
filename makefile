@@ -6,10 +6,12 @@ OBJ_DIR = obj
 H_DIR = includes
 
 SOURCE_FILES = helpers.c \
+	       helpers2.c \
 	       cache.c \
 	       errors.c \
 	       process_map.c \
 	       read_input.c \
+	       solution.c \
 	       main.c
 
 OBJECT_FILES = $(SOURCE_FILES:%.c=$(OBJ_DIR)/%.o)

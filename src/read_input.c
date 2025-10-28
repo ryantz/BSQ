@@ -6,22 +6,11 @@
 /*   By: stelim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 14:25:30 by stelim            #+#    #+#             */
-/*   Updated: 2025/10/28 20:58:46 by stelim           ###   ########.fr       */
+/*   Updated: 2025/10/29 05:14:16 by ryatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "lib.h"
-
-int	ft_strlen2(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (str[len] != '\n')
-		len++;
-	len++;
-	return (len);
-}
+#include "lib.h"
 
 void	ft_read_into_array(char ***arr, char *str, int row, int buff)
 {
@@ -30,13 +19,13 @@ void	ft_read_into_array(char ***arr, char *str, int row, int buff)
 	int	row_cnt;
 	int	npar;
 
-	*arr = malloc (row * sizeof(char *));
+	*arr = malloc ((row + 1) * sizeof(char *));
 	idx_y = 0;
 	idy = 0;
 	row_cnt = 0;
 	npar = ft_strlen2(str);
-	(*arr)[row_cnt] = malloc (n_params * sizeof(char));
-	while (idy < buffer)
+	(*arr)[row_cnt] = malloc ((npar + 1) * sizeof(char));
+	while (idy < buff)
 	{
 		if (str[idy] == '\n' || str[idy] == '\0')
 		{
@@ -69,7 +58,6 @@ int	ft_filebuffer(const char *file_path)
 char	**ft_read_txt_file(const char *file_path, char **map)
 {
 	int		fd;
-	int		fl;
 	int		file_buffer;
 	char	*map_fp;
 
@@ -96,6 +84,28 @@ t_map_input	ft_input(char **map)
 	output.block = input[idx - 2];
 	output.fill = input[idx - 1];
 	return (output);
+}
+
+char	**ft_make_mask_map(char **mask, int cols, t_map_input input)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (mask[i])
+	{
+		j = 0;
+		while(j < cols)
+		{
+			if (mask[i][j] == input.empty)
+				mask[i][j] = '1';
+			else if (mask[i][j] == input.block)
+				mask[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
+	return (mask);
 }
 
 /*
