@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   read_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ryatan <ryatan@student.42singapore.sg>     +#+  +:+       +#+        */
+/*   By: stelim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 11:45:40 by ryatan            #+#    #+#             */
-/*   Updated: 2025/10/27 22:16:11 by ryatan           ###   ########.fr       */
+/*   Updated: 2025/10/27 12:07:42 by ryatan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdio.h>
 
 int	main(int argc, char **argv)
 {
-	
+	char s = 'k';
+
+	ft_putchar(s);
 	return (0);
 }

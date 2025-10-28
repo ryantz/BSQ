@@ -24,6 +24,13 @@ typedef struct s_coord_len
 	int	len;
 }	t_coord_len;
 
+typedef struct s_map_input
+{
+	char	empty;
+	char	block;
+	char	fill;
+}	t_map_input;
+
 // helpers
 void	ft_putchar(char c);
 void	ft_putstr(char *s);
