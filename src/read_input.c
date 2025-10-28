@@ -6,60 +6,50 @@
 /*   By: stelim <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 14:25:30 by stelim            #+#    #+#             */
-/*   Updated: 2025/10/27 22:03:16 by ryatan           ###   ########.fr       */
+/*   Updated: 2025/10/28 20:58:46 by stelim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib.h"
+//#include "lib.h"
 
-void	ft_read_into_array(char ***array, char *str, int row, int buffer)
+int	ft_strlen2(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len] != '\n')
+		len++;
+	len++;
+	return (len);
+}
+
+void	ft_read_into_array(char ***arr, char *str, int row, int buff)
 {
 	int	idx_y;
 	int	idy;
-	int	row_count;
+	int	row_cnt;
+	int	npar;
 
-	*array = malloc (row * sizeof(char *));
+	*arr = malloc (row * sizeof(char *));
 	idx_y = 0;
 	idy = 0;
-	row_count = 0;
-	(*array)[row_count] = malloc (buffer / row * sizeof(char));
+	row_cnt = 0;
+	npar = ft_strlen2(str);
+	(*arr)[row_cnt] = malloc (n_params * sizeof(char));
 	while (idy < buffer)
 	{
 		if (str[idy] == '\n' || str[idy] == '\0')
 		{
-			(*array)[row_count][idx_y] = '\0';
-			row_count++;
-			(*array)[row_count] = malloc (buffer / row * sizeof(char));
+			(*arr)[row_cnt][idx_y] = '\0';
+			row_cnt++;
+			(*arr)[row_cnt] = malloc ((buff - npar) / (row - 1) * sizeof(char));
 			idx_y = 0;
 		}
 		else
-		{
-			(*array)[row_count][idx_y] = str[idy];
-			idx_y++;
-		}
+			(*arr)[row_cnt][idx_y++] = str[idy];
 		idy++;
 	}
-	(*array)[row_count] = NULL;
-}
-
-int	ft_firstline(const char *file_path)
-{
-	int		fd;
-	int		len;
-	char	holder;
-
-	fd = open(file_path, O_RDONLY);
-	if (fd == -1)
-		write (1, "File Error: File not found", 26);
-	holder = -1;
-	len = 0;
-	while (holder != '\n')
-	{
-		read(fd, &holder, 1);
-		len++;
-	}
-	close(fd);
-	return (len);
+	(*arr)[row_cnt] = NULL;
 }
 
 int	ft_filebuffer(const char *file_path)
@@ -82,28 +72,49 @@ char	**ft_read_txt_file(const char *file_path, char **map)
 	int		fl;
 	int		file_buffer;
 	char	*map_fp;
-	char	*n_rows;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 		write(1, "File Error: File not found", 26);
-	fl = ft_firstline(file_path);
-	file_buffer = ft_filebuffer(file_path) - fl;
-	n_rows = (char *) malloc (fl * sizeof(char));
-	read (fd, n_rows, fl);
+	file_buffer = ft_filebuffer(file_path);
 	map_fp = (char *) malloc (file_buffer * sizeof(char));
 	read (fd, map_fp, file_buffer);
 	close(fd);
-	ft_read_into_array(&map, map_fp, (n_rows[0] - '0' + 1), file_buffer);
+	ft_read_into_array(&map, map_fp, (map_fp[0] - '0' + 2), file_buffer);
 	return (map);
+}
+
+t_map_input	ft_input(char **map)
+{
+	t_map_input	output;
+	char		*input;
+	int			idx;
+
+	input = map[0];
+	idx = ft_strlen(input);
+	output.empty = input[idx - 3];
+	output.block = input[idx - 2];
+	output.fill = input[idx - 1];
+	return (output);
 }
 
 /*
 int	main(void)
 {
 	char	**map;
+	map_input input;
 
 	map = ft_read_txt_file("../test.txt", map);
+	
+	int idx = 0;
+
+	while (idx < 11)
+	{
+		printf ("%s\n", map[idx]);
+		idx++;
+	}
+
+	input = ft_input(map);
 	free(map);
 }
 */
